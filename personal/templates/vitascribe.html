@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %} 
+     
+    <div class="mt-5 mb-5"> 
+        <div class="row ">   
+            {% for message in message_paginators %}   
+            <div class="col-md-3 flex justfy-center">
+                <div class="card mb-3 mt-3"  > 
+                    <img src="{{ message.product_img }}" class="card-img-top" alt="...">  
+                    <div class="card-body">
+                    <h5 class="card-title">{{ message.product_name }}</h5>
+                    <p class="card-text">{{ message.name }}</p>
+                    <span>{{ message.price }}</span> 
+                    </div>
+                </div>  
+            </div>
+            {% endfor %}  
+        </div> 
+ 
+        <div class="flex justfy-center mt-5">
+            <nav aria-label="Page navigation example "> 
+                {% if message_paginators.has_other_pages %}
+                <ul class="pagination">
+                    {% if message_paginators.has_previous %}
+                    <li class="page-item"><a class="page-link"  href="?page={{ message_paginators.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span  class="page-link">&laquo;</span></li>
+                    {% endif %}
+                    {% for i in message_paginators.paginator.page_range %}
+                    {% if message_paginators.number == i %}
+                        <li class="active page-item"><span  class="page-link">{{ i }} <span class="sr-only"> </span></span></li>
+                    {% else %}
+                        <li class="page-item"><a  class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if message_paginators.has_next %}
+                    <li class="page-item"><a  class="page-link" href="?page={{ message_paginators.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span  class="page-link">&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}  
+            </nav> 
+        </div>  
+    </div>   
+{% endblock %}

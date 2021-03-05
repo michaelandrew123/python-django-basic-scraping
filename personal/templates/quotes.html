@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}  
+    <div class="mt-5 mb-5">  
+        <div class="row">   
+            {% for quote in quots_paginators %}   
+            <div class="col-md-3 flex justfy-center">
+                <div class="card mb-3 mt-3"  >
+                    
+                    <img src="{{ quote.img }}" class="card-img-top" alt="...">  
+                    <div class="card-body">
+                    <h5 class="card-title">{{ quote.theme }}</h5>
+                    <p class="card-text">{{ quote.lines }}</p>
+                    <!-- <span>{{ quote.lines }}</span> -->
+                    <!-- <a href="#" class="btn btn-primary">{{ message.middlename }}</a> -->
+                    
+                    </div>
+                </div>  
+            </div>
+            {% endfor %}  
+        </div>  
+
+
+        <div class="flex justfy-center mt-5">
+            <nav aria-label="Page navigation example "> 
+                {% if quots_paginators.has_other_pages %}
+                <ul class="pagination">
+                    {% if quots_paginators.has_previous %}
+                    <li class="page-item"><a class="page-link"  href="?page={{ quots_paginators.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span  class="page-link">&laquo;</span></li>
+                    {% endif %}
+                    {% for i in quots_paginators.paginator.page_range %}
+                    {% if quots_paginators.number == i %}
+                        <li class="active page-item"><span  class="page-link">{{ i }} <span class="sr-only"> </span></span></li>
+                    {% else %}
+                        <li class="page-item"><a  class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if quots_paginators.has_next %}
+                    <li class="page-item"><a  class="page-link" href="?page={{ quots_paginators.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled page-item"><span  class="page-link">&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}  
+            </nav> 
+        </div>  
+    </div>  
+{% endblock %}

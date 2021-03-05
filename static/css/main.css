@@ -1,0 +1,124 @@
+
+        *{
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            user-select: none;
+            -ms-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0,0,0);
+        }
+        body{
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            overflow: hidden;
+        }
+        #wrapper{
+            height: 92vh;
+            overflow-x: auto;
+        }
+        .container{
+         
+        }
+        header{
+            position: relative;
+            min-height: 8vh;
+            background-color: #161e38;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center; 
+            
+        }
+        .logo a{
+            text-decoration: none;
+            font-size: 28px;
+            padding: 0;
+            margin: 0;
+            letter-spacing: 5px;
+            font-weight: 400;
+            font-family: 'Amatic SC', cursive;
+            color: #0dcaf0 !important;
+        }
+        nav{
+            width: 40%; 
+        }
+        .nav-links{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            margin:0; 
+        }
+        .nav-links .nav-link{
+            letter-spacing: 3px;
+        }
+        .nav-links a{
+            color: #fff;
+            text-decoration: none;
+        }
+        .burger{
+            display: none;
+        }
+
+        .burger > div{
+            width: 25px;
+            height: 2px;
+            background-color: rgb(226, 226, 226);
+            margin: 5px;
+            transition: all 0.3s ease-in;
+        }
+        @media screen and (max-width: 768px){
+            .burger{
+                display: block;
+            } 
+            nav{
+                position: absolute;
+                background-color: #161e38;
+                top: 8vh;
+                right: 0;
+                height: 92vh;
+                width: 50%;
+                transform: translateX(100%);
+		        transition: transform 0.5s ease-in;
+                z-index: 1;
+            }
+            .nav-links{
+                flex-direction: column;
+                justify-content: space-around;
+                height: 100%;
+                align-items: flex-start;
+            }
+            .nav-link {
+                transform: translateX(0%);
+                opacity: 0;
+                pointer-events: none;
+            }
+
+        }
+        .nav-active{
+            transform: translateX(0%);
+        }
+        .toggle .line1{
+            transform: rotate(-45deg) translate(-5px, 6px);
+            
+        }
+        .toggle .line2{
+            opacity: 0;
+        }
+        .toggle .line3{
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+         @keyframes slide {
+            from{
+                opacity: 0; 
+                transform: translateX(100%);
+                pointer-events: none;
+            }   
+            to{
+                opacity: 1; 
+                transform: translateX(0%);
+                pointer-events: all;
+            }
+        }  
